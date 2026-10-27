@@ -1,94 +1,122 @@
 % !TEX program = pdflatex
-% Classic, minimal CV
+% Clean, HR-scannable CV (minimal classic LaTeX)
 \documentclass[10pt,a4paper]{article}
 
-\usepackage[margin=1.15cm]{geometry}
+\usepackage[margin=1.4cm]{geometry}
 \usepackage{enumitem}
 \usepackage[hidelinks]{hyperref}
-
 \pagestyle{empty}
-\linespread{1.05}\selectfont
 \setlength{\parindent}{0pt}
-\setlength{\parskip}{0.32em}
-\setlist[itemize]{leftmargin=1.2em, itemsep=0.22em, topsep=0.28em, parsep=0pt}
-
-\newcommand{\cvsection}[1]{%
-  \vspace{0.65em}%
-  {\large\bfseries #1}\\[-0.15em]
-  \rule{\linewidth}{0.4pt}\vspace{0.38em}%
+\setlength{\parskip}{0.2em}
+\setlist[itemize]{
+  leftmargin=1.1em,
+  itemsep=0.12em,
+  topsep=0.15em,
+  parsep=0pt,
+  label=\textbullet
 }
 
-\newcommand{\cvrole}[3]{%
-  \textbf{#1} \hfill #3\\
-  \textit{#2}\\[0.22em]
+% Section: clear band for recruiters
+\newcommand{\cvsection}[1]{%
+  \par\vspace{0.65em}%
+  {\bfseries\large #1}\par
+  \vspace{-0.55em}\noindent\rule{\textwidth}{0.5pt}\par
+  \vspace{0.35em}%
+}
+
+% Job header: title + dates, then company
+\newcommand{\job}[4]{%
+  \par\vspace{0.35em}%
+  \noindent\textbf{#1}\hfill{\small #3}\par
+  \noindent\textit{#2}\par
+  \ifx&#4&\else{\small #4}\par\fi
+  \vspace{0.15em}%
 }
 
 \begin{document}
 
+% ---- Header ----
 \begin{center}
   {\LARGE\bfseries Xinxin Liu}\\[0.4em]
-  \small
+  {\small
   \href{mailto:xxliu95@gmail.com}{xxliu95@gmail.com}
-  \ $|\ $
-  \href{https://www.linkedin.com/in/xxliu95}{linkedin.com/in/xxliu95}
-  \ $|\ $
-  603\,415\,095
-  \ $|\ $
-  \href{https://xxliu95.github.io}{xxliu95.github.io}
+  \ $\cdot$\ 
+  \href{https://www.linkedin.com/in/xxliu95}{LinkedIn}
+  \ $\cdot$\ 
+  +34\,603\,415\,095
+  \ $\cdot$\ 
+  \href{https://xxliu95.github.io}{xxliu95.github.io}}
 \end{center}
 
-\cvsection{About me}
-I am a senior software engineer with LTE and 5G development experience, currently also acting as a
-team leader alongside hands-on feature work.
-I have a proven ability to quickly learn and adapt to new technologies.
-Graduating in the top 10\% of my class.
-I excel in technical delivery, code quality, mentoring, and reliable project execution.
-My strong communication skills enable me to bridge teams between China and Spain effectively.
+\cvsection{Summary}
+Senior software engineer with 5+ years on LTE/5G packet core (UPF, User Plane Function)
+in cloud-native C microservices at Ericsson. Hands-on feature owner who also leads a team.
+Bridges engineering collaboration between China and Spain.
 
 \cvsection{Experience}
 
-\textbf{Software Development Engineer to Senior Software Engineer and Team Leader}\\
-\textit{Ericsson Spain SA.\ $|\ $ Madrid} \hfill July 2021 -- Present\\[0.12em]
-{\small Promoted to Team Leader in May 2026; continue hands-on feature work.}\\[0.22em]
-LTE EPC (Evolved Packet Core) and 5G Packet Core UPF (User Plane Function) development
-in a cloud-native microservice architecture.
+\job{Senior Software Engineer}
+{Ericsson Spain SA., Madrid}
+{Jul 2021 -- Present}
+{Team Leader since May 2026 (previously Software Development Engineer).
+LTE EPC (Evolved Packet Core) and 5G UPF in a cloud-native microservice architecture.}
+
+\noindent\textit{Responsibilities:} own UPF features end-to-end in C (design, implementation, docs, tests);
+Shell/Python automation; code reviews and mentoring; as Team Leader, Gantt planning, stakeholder
+alignment, and unblocking delivery.
+
+\vspace{0.25em}
+\noindent\textbf{Highlights}
 \begin{itemize}
-  \item \textbf{Feature ownership:} design, implement, document, and test complex UPF user stories in C;
-        build Shell/Python automation around local workflows and verification.
-  \item \textbf{5G PCG L2TP port:} contributed from day one to porting L2TP support into 5G PCG
-        (Packet Core Gateway); refactored and restructured the codebase, removed unused code, and replaced
-        complex state machines with callbacks; compile time improved by $\sim$2$\times$.
-  \item \textbf{Static analysis cleanup:} removed 1000+ clang-tidy warnings across 10+ check types.
-  \item \textbf{Test coverage:} raised coverage of a DPI (Deep Packet Inspector) submodule to at least 80\%.
-  \item \textbf{Test framework:} improved result accuracy by $\sim$40\% and stabilized $\sim$20\% of flaky tests.
-  \item \textbf{Team leadership:} cut the improvement backlog by $\sim$50\% in the first month as Team Leader,
-        personally implementing most fixes; mentoring, Gantt planning, stakeholder alignment, and unblocking.
+  \item Led triage of 5 blocker trouble reports in one day after a new pipeline step and new test cases;
+        fixed more than half (mostly API issues between simulators and the SUT (system under test));
+        handed one off with findings.
+  \item Removed 1000+ clang-tidy warnings across 10+ check types in production C code.
+  \item Raised DPI (Deep Packet Inspection) submodule coverage to $\geq$80\%; improved test-framework
+        accuracy by $\sim$40\% and stabilized $\sim$20\% of flaky tests.
+  \item As Team Leader, cut the improvement backlog by $\sim$50\% in month one, personally implementing
+        most of the items.
+  \item Contributed $\sim$25\% of the 5G PCG (Packet Core Gateway) L2TP port refactor (restructure,
+        dead-code removal, state machines to callbacks); compile time $\sim$2$\times$ faster than the
+        EPC implementation.
 \end{itemize}
+\vspace{0.45em}
 
-\cvrole{Full-stack Developer}{Freelance}{Feb 2025 -- Present}
-Develop web applications with React, Django and PostgreSQL deployed in Google Cloud.
+\job{Full-stack Developer (part-time)}
+{Freelance}
+{Feb 2025 -- Present}
+{}
+React / Django / PostgreSQL apps on Google Cloud, Railway, and Vercel.
 
-\cvrole{R\&D Software Development Engineer Intern}
-{Ericsson Spain SA.\ $|\ $ Madrid}{July 2020 -- June 2021}
-Traffic optimization and streaming performance analysis using NS-3, including ABR (Adaptive Bit Rate)
-module development in C++.
+\job{R\&D Software Development Engineer Intern}
+{Ericsson Spain SA., Madrid}
+{Jul 2020 -- Jun 2021}
+{}
+NS-3 traffic and streaming analysis; ABR module in C++.
 
 \cvsection{Education}
 
-\cvrole{MEng in Telecommunication Engineering}
-{Universidad Polit\'ecnica de Madrid $|\ $ Spain}{September 2019 -- July 2021}
+\job{MEng in Telecommunication Engineering}
+{Universidad Polit\'ecnica de Madrid, Spain}
+{Sep 2019 -- Jul 2021}
+{}
 
-\cvrole{BEng in Telecommunication Technologies and Services Engineering}
-{Universidad Polit\'ecnica de Madrid $|\ $ Spain}{September 2015 -- July 2019}
+\job{BEng in Telecommunication Technologies and Services Engineering}
+{Universidad Polit\'ecnica de Madrid, Spain}
+{Sep 2015 -- Jul 2019}
+{}
+Graduated in the top 10\% of the class.
 
-\cvrole{Visiting Research Student.\ Computer Science}
-{Tsinghua University $|\ $ China}{September 2018 -- January 2019}
+\job{Visiting Research Student, Computer Science}
+{Tsinghua University, China}
+{Sep 2018 -- Jan 2019}
+{}
 
 \cvsection{Skills}
-\textbf{Languages:} Native Chinese and Spanish. English C1.\\
-\textbf{Programming:} C (primary); Python (scripting, tooling, Django); Go (occasional).
-Familiar: JavaScript, Java, Swift.\\
-\textbf{Tools:} Git, Gerrit, CI/CD, Docker, Kubernetes, Redis, Linux CLI, AI Agents, MCP.\\
+\textbf{Spoken:} Native Chinese and Spanish; English C1.\\[0.12em]
+\textbf{Programming:} C (primary); Python (scripting, tooling, Django); Go (occasional);
+Familiar: C++ (internship), JavaScript, Java, Swift.\\[0.12em]
+\textbf{Tools:} Git, Gerrit, CI/CD, Docker, Kubernetes, Redis, Linux CLI, JIRA, Scrum.\\[0.12em]
 \textbf{Networking:} L2TP, GTP (GPRS Tunneling Protocol), PFCP (Packet Forwarding Control Protocol),
 CGNAT (Carrier-Grade NAT), PCFW (Packet Core Firewall).
 
